@@ -30,7 +30,6 @@ def LCS(a,b):
 print ''.join(LCS("loageeksstuff","abbageeks"))
 print ''.join(LCS("geeksstuff","geeks"))
 print ''.join(LCS("abba geeku","abba geeksu"))
-print ''.join(LCS("rave ninu dengutha","abbo ninu dengali"))
 print ''.join(LCS("abba geeku","oageeks"))
 
 
