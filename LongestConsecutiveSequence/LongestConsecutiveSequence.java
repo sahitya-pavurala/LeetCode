@@ -7,40 +7,44 @@ class LongestConsecutiveSequence{
 	static int LCS(int[] arr)
 	{
 
+		if (arr.length == 0)
+			return 0;
+
+
 		int result = 1;
-		HashMap<Integer,Integer> check = new HashMap<Integer,Integer>();
+		Set<Integer> check = new HashSet<Integer>();
+
+		for (int i : arr)
+		{
+			check.add(i);
+		}
 
 		for(int i : arr)
 		{
 
-			int tempres = 1;
+			int lower = i - 1;
+			int higher = i + 1;
+			int count = 1;
 
-			if (check.get(i+1) != null && check.get(i+1) >= tempres)
+			while(check.contains(lower))
 			{
-				tempres = check.get(i+1) + 1;
-				check.put(i+1,tempres);
-				if (check.get(i-1) != null)
-					check.put(i-1,tempres);
-
+				count++;
+				check.remove(lower);
+				lower--;
 			}
 
-
-			if (check.get(i-1) != null && check.get(i-1) >= tempres)
+			while(check.contains(higher))
 			{
-				tempres = check.get(i-1) +  1;
-				check.put(i-1,tempres);
-				if (check.get(i+1) != null)
-					check.put(i+1,tempres);
-
+				count++;
+				check.remove(higher);
+				higher++;
 			}
 
-			check.put(i,tempres);
-
-			if(tempres > result)
-				result = tempres;
+			result = Math.max(count,result);
+		
 		}
 
-		return result;
+	return result;
 	}
 
 
